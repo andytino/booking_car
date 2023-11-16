@@ -43,29 +43,29 @@ export default defineNuxtConfig({
       orientation: "any",
       icons: [
         {
-          src: "icons/64-noel.png",
+          src: "icons/64-booking.png",
           sizes: "64x64",
           type: "image/png",
         },
         {
-          src: "icons/114-noel.png",
+          src: "icons/114-booking.png",
           sizes: "114x114",
           type: "image/png",
         },
         {
-          src: "icons/192-noel.png",
+          src: "icons/192-booking.png",
           sizes: "192x192",
           type: "image/png",
         },
         {
-          src: "icons/512-noel.png",
+          src: "icons/512-booking.png",
           sizes: "512x512",
           type: "image/png",
         },
       ],
     },
     workbox: {
-      // globPatterns: ["**/*.{js,css}"],
+      globPatterns: ["**/*.{js,css}"],
       navigateFallback: null,
     },
     devOptions: {
@@ -73,10 +73,11 @@ export default defineNuxtConfig({
       type: "module",
     },
   },
-  devtools: { enabled: true },
+  // devtools: { enabled: true },
   css: ["~/assets/css/styles.scss", "~/assets/css/main.css"],
   postcss: {
     plugins: {
+      "tailwindcss/nesting": {},
       tailwindcss: {},
       autoprefixer: {},
     },
