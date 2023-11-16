@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { FormError, FormSubmitEvent } from "#ui/types";
+import type { FormError } from "#ui/types";
 
 interface IFormLoginState {
   email: string;
@@ -11,13 +11,11 @@ definePageMeta({
 });
 const supabase = useSupabaseClient();
 const router = useRouter();
-const config = useRuntimeConfig();
 
 const formLoginState = reactive<IFormLoginState>({
   email: "",
   password: "",
 });
-const errMessage = ref(null);
 
 const validate = (state: any): FormError[] => {
   const errors = [];
@@ -38,8 +36,6 @@ const hdLoginWithGoogle = async () => {
 };
 
 const handleLogin = async () => {
-  console.log("form", formLoginState);
-
   try {
     const { error } = await supabase.auth.signInWithPassword({
       email: formLoginState.email,

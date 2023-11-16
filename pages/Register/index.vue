@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { FormError, FormSubmitEvent } from "#ui/types";
+import type { FormError } from "#ui/types";
 
 interface IFormRegisterState {
   email: string;
@@ -11,8 +11,6 @@ definePageMeta({
 });
 const supabase = useSupabaseClient();
 const router = useRouter();
-
-const config = useRuntimeConfig();
 
 const formRegisterState = reactive<IFormRegisterState>({
   email: "",
@@ -27,8 +25,6 @@ const validate = (state: any): FormError[] => {
 };
 
 const handleRegister = async () => {
-  console.log("form", formRegisterState);
-
   try {
     const { error } = await supabase.auth.signUp({
       email: formRegisterState.email,
