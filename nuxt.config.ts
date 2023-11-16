@@ -32,47 +32,48 @@ export default defineNuxtConfig({
   supabase: {
     redirect: false,
   },
-  pwa: {
-    manifest: {
-      name: "Booking_Car",
-      short_name: "Booking Car",
-      description: "Đồ án môn nhập môn lập trình",
-      background_color: "#FFFFFF",
-      theme_color: "#FFFFFF",
-      display: "standalone",
-      orientation: "any",
-      icons: [
-        {
-          src: "icons/64-booking.png",
-          sizes: "64x64",
-          type: "image/png",
-        },
-        {
-          src: "icons/114-booking.png",
-          sizes: "114x114",
-          type: "image/png",
-        },
-        {
-          src: "icons/192-booking.png",
-          sizes: "192x192",
-          type: "image/png",
-        },
-        {
-          src: "icons/512-booking.png",
-          sizes: "512x512",
-          type: "image/png",
-        },
-      ],
-    },
-    workbox: {
-      globPatterns: ["**/*.{js,css}"],
-      navigateFallback: null,
-    },
-    devOptions: {
-      enabled: true,
-      type: "module",
-    },
-  },
+  // pwa: {
+  //   manifest: {
+  //     name: "Booking_Car",
+  //     short_name: "Booking Car",
+  //     description: "Đồ án môn nhập môn lập trình",
+  //     background_color: "#FFFFFF",
+  //     theme_color: "#FFFFFF",
+  //     display: "standalone",
+  //     orientation: "any",
+  //     icons: [
+  //       {
+  //         src: "icons/64-booking.png",
+  //         sizes: "64x64",
+  //         type: "image/png",
+  //       },
+  //       {
+  //         src: "icons/114-booking.png",
+  //         sizes: "114x114",
+  //         type: "image/png",
+  //       },
+  //       {
+  //         src: "icons/192-booking.png",
+  //         sizes: "192x192",
+  //         type: "image/png",
+  //       },
+  //       {
+  //         src: "icons/512-booking.png",
+  //         sizes: "512x512",
+  //         type: "image/png",
+  //       },
+  //     ],
+  //   },
+  //   // workbox: {
+  //   //   globPatterns: ["**/*.{js,css}"],
+  //   //   navigateFallback: null,
+  //   //   cleanupOutdatedCaches: true,
+  //   // },
+  //   // devOptions: {
+  //   //   enabled: true,
+  //   //   type: "module",
+  //   // },
+  // },
   // devtools: { enabled: true },
   css: ["~/assets/css/styles.scss", "~/assets/css/main.css"],
   postcss: {
@@ -108,6 +109,7 @@ export default defineNuxtConfig({
     plugins: ["~/server/index.ts"],
   },
   runtimeConfig: {
+    url: process.env.URL,
     supabaseUrl: process.env.SUPABASE_URL,
     supabaseKey: process.env.SUPABASE_KEY,
   },

@@ -3,8 +3,14 @@ definePageMeta({
   colorMode: "light",
 });
 
-const hdClick = () => {
+const hdNavigateToLogin = () => {
   // console.log("aa");
+  navigateTo("/login");
+};
+
+const hdNavigateToRegister = () => {
+  // console.log("aa");
+  navigateTo("/register");
 };
 
 // const { data } = await useFetch("/api/test");
@@ -15,7 +21,8 @@ const hdClick = () => {
 <template>
   <div>
     <h1 class="text-3xl font-bold underline">Hello world!</h1>
-    <div>ts</div>
-    <UButton @click="hdClick">Button</UButton>
+
+    <UButton @click="hdNavigateToLogin">Login</UButton>
+    <UButton @click="hdNavigateToRegister">Register</UButton>
   </div>
 </template>

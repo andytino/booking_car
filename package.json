@@ -12,13 +12,15 @@
     "lint:prettier": "prettier --check .",
     "lint": "yarn lint:js && yarn lint:prettier",
     "lintfix": "prettier --write --list-different . && yarn lint:js --fix",
-    "generate:types":"npx supabase gen types typescript --project-id bddithvcleqbbiigodpf --schema public > ./types/supabase.ts"
+    "generate:types": "npx supabase gen types typescript --project-id bddithvcleqbbiigodpf --schema public > ./types/supabase.ts"
   },
   "devDependencies": {
     "@nuxt/devtools": "latest",
+    "@nuxtbase/auth-ui-vue": "^0.3.3",
     "@nuxtjs/color-mode": "^3.3.0",
     "@nuxtjs/eslint-config-typescript": "^12.1.0",
     "@nuxtjs/supabase": "^1.1.3",
+    "@supabase/auth-ui-shared": "^0.1.8",
     "@typescript-eslint/eslint-plugin": "^6.11.0",
     "@typescript-eslint/parser": "^6.11.0",
     "@vite-pwa/nuxt": "^0.2.3",

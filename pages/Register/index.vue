@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import type { FormError, FormSubmitEvent } from "#ui/types";
 
-interface IFormLoginState {
+interface IFormRegisterState {
   email: string;
   password: string;
 }
@@ -11,13 +11,13 @@ definePageMeta({
 });
 const supabase = useSupabaseClient();
 const router = useRouter();
+
 const config = useRuntimeConfig();
 
-const formLoginState = reactive<IFormLoginState>({
+const formRegisterState = reactive<IFormRegisterState>({
   email: "",
   password: "",
 });
-const errMessage = ref(null);
 
 const validate = (state: any): FormError[] => {
   const errors = [];
@@ -26,52 +26,41 @@ const validate = (state: any): FormError[] => {
   return errors;
 };
 
-const hdLoginWithGoogle = async () => {
-  try {
-    const { error } = await supabase.auth.signInWithOAuth({
-      provider: "google",
-    });
-    if (error) console.log(error);
-
-    router.push("/home");
-  } catch (err) {}
-};
-
-const handleLogin = async () => {
-  console.log("form", formLoginState);
+const handleRegister = async () => {
+  console.log("form", formRegisterState);
 
   try {
-    const { error } = await supabase.auth.signInWithPassword({
-      email: formLoginState.email,
-      password: formLoginState.password,
+    const { error } = await supabase.auth.signUp({
+      email: formRegisterState.email,
+      password: formRegisterState.password,
     });
+
     if (error) console.log(error);
 
-    router.push("/home");
+    router.push("/login");
   } catch (err) {}
 };
 </script>
 
 <template>
   <div class="flex flex-col items-center">
-    <h1 class="font-bold text-xl">LOGIN</h1>
-    <UButton @click="hdLoginWithGoogle">Google</UButton>
+    <h1 class="font-bold text-xl">REGISTER</h1>
 
     <UForm
       class="flex flex-col items-center"
       :validate="validate"
-      :state="formLoginState"
-      @submit="handleLogin"
+      :state="formRegisterState"
+      @submit="handleRegister"
     >
       <UFormGroup label="Email" name="email">
-        <UInput v-model="formLoginState.email" />
+        <UInput v-model="formRegisterState.email" />
       </UFormGroup>
 
       <UFormGroup label="Password" name="password">
-        <UInput v-model="formLoginState.password" type="password" />
+        <UInput v-model="formRegisterState.password" type="password" />
       </UFormGroup>
 
-      <UButton type="submit"> Login </UButton>
+      <UButton type="submit"> Register </UButton>
     </UForm>
   </div>
 </template>

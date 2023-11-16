@@ -1787,6 +1787,11 @@
     vite-plugin-checker "^0.6.2"
     vue-bundle-renderer "^2.0.0"
 
+"@nuxtbase/auth-ui-vue@^0.3.3":
+  version "0.3.3"
+  resolved "https://registry.yarnpkg.com/@nuxtbase/auth-ui-vue/-/auth-ui-vue-0.3.3.tgz#4011410599d63e86bb1ee23fdc911d5eebc8b9da"
+  integrity sha512-m4kW/+qwJOHSoj9N+fw/5BoIqnF8Av13xu4c+bGSTKwiYXDMhJyK/RFByo5WbpTUemROIpMdh3UpYpR4DMCrUQ==
+
 "@nuxtjs/color-mode@^3.3.0":
   version "3.3.0"
   resolved "https://registry.yarnpkg.com/@nuxtjs/color-mode/-/color-mode-3.3.0.tgz#4c0e2ea2b23813461e6cfaa10dd169805a5145a6"
@@ -2139,6 +2144,11 @@
   dependencies:
     "@sigstore/protobuf-specs" "^0.2.1"
     tuf-js "^2.1.0"
+
+"@supabase/auth-ui-shared@^0.1.8":
+  version "0.1.8"
+  resolved "https://registry.yarnpkg.com/@supabase/auth-ui-shared/-/auth-ui-shared-0.1.8.tgz#1ce63c4ac58f29d7c76436b774b0e8809dd08617"
+  integrity sha512-ouQ0DjKcEFg+0gZigFIEgu01V3e6riGZPzgVD0MJsCBNsMsiDT74+GgCEIElMUpTGkwSja3xLwdFRFgMNFKcjg==
 
 "@supabase/functions-js@^2.1.5":
   version "2.1.5"
