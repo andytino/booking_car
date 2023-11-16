@@ -1,5 +1,10 @@
 {
-  "cSpell.words": ["antd", "lintfix"],
+  "cSpell.words": [
+    "antd",
+    "lintfix",
+    "supabase",
+    "Vite"
+],
   "files.associations": {
     "*.css": "tailwindcss"
   },

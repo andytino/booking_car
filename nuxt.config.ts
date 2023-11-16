@@ -28,7 +28,10 @@ export default defineNuxtConfig({
       ],
     },
   },
-  modules: ["@pinia/nuxt", "@nuxt/ui", "@vite-pwa/nuxt"],
+  modules: ["@pinia/nuxt", "@nuxt/ui", "@nuxtjs/supabase", "@vite-pwa/nuxt"],
+  supabase: {
+    redirect: false,
+  },
   pwa: {
     manifest: {
       name: "Booking_Car",
@@ -104,8 +107,8 @@ export default defineNuxtConfig({
     plugins: ["~/server/index.ts"],
   },
   runtimeConfig: {
-    mongodbUrl: process.env.MONGODB_URL,
-    mongodbName: process.env.MONGODB_NAME,
+    supabaseUrl: process.env.SUPABASE_URL,
+    supabaseKey: process.env.SUPABASE_KEY,
   },
   vite: {
     plugins: [svgLoader({ defaultImport: "component" })],
