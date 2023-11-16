@@ -14,6 +14,12 @@ onMounted(() => {
     console.log("t");
   }
 });
+
+const fetchLibrary = async () => {
+  const { data } = await $fetch("/api/test");
+};
+
+// fetchLibrary();
 </script>
 <template>
   <div>
