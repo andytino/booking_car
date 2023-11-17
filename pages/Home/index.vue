@@ -20,6 +20,5 @@ const hdLogout = async () => {
   <div>
     <h1>HOME</h1>
     <p>Email: {{ user?.email }}</p>
-    <UButton @click="hdLogout">Logout</UButton>
   </div>
 </template>

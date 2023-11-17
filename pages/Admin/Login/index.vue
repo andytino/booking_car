@@ -4,6 +4,7 @@ import { ROUTES } from "~/constants/routes";
 
 definePageMeta({
   colorMode: "light",
+  layout: "auth-layout",
 });
 const supabase = useSupabaseClient();
 const router = useRouter();
