@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import type { FormError } from "#ui/types";
+import { ROLES } from "~/types/roles";
 
 interface IFormRegisterState {
   email: string;
@@ -29,9 +30,15 @@ const handleRegister = async () => {
     const { error } = await supabase.auth.signUp({
       email: formRegisterState.email,
       password: formRegisterState.password,
+      options: {
+        data: {
+          role_id: ROLES.user,
+          is_active: true,
+        },
+      },
     });
 
-    if (error) console.log(error);
+    if (error) throw error;
 
     router.push("/login");
   } catch (err) {}

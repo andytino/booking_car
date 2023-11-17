@@ -8,17 +8,6 @@ definePageMeta({
 const supabase = useSupabaseClient();
 const router = useRouter();
 
-const hdLoginWithGoogle = async () => {
-  try {
-    const { error } = await supabase.auth.signInWithOAuth({
-      provider: "google",
-    });
-    if (error) console.log(error);
-
-    router.push("/home");
-  } catch (err) {}
-};
-
 const hdLogin = async (formLogin: IFormLoginState) => {
   try {
     const { error } = await supabase.auth.signInWithPassword({
@@ -27,15 +16,14 @@ const hdLogin = async (formLogin: IFormLoginState) => {
     });
     if (error) console.log(error);
 
-    router.push(ROUTES.login);
+    router.push(ROUTES.driverLogin);
   } catch (err) {}
 };
 </script>
 
 <template>
   <div class="flex flex-col items-center">
-    <h1 class="font-bold text-xl">LOGIN</h1>
-    <UButton @click="hdLoginWithGoogle">Google</UButton>
+    <h1 class="font-bold text-xl">DRIVER LOGIN</h1>
 
     <LoginBase @login="hdLogin" />
   </div>

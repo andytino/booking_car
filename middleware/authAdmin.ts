@@ -7,10 +7,10 @@ export default defineNuxtRouteMiddleware(async () => {
   const userRole = user.value?.user_metadata.role_id;
 
   if (!user.value) {
-    return navigateTo(ROUTES.login);
-  } else if (userRole !== ROLES.user) {
+    return navigateTo(ROUTES.adminLogin);
+  } else if (![ROLES.admin, ROLES.staff].includes(userRole)) {
     const { error } = await supabase.auth.signOut();
     if (error) throw error;
-    return navigateTo(ROUTES.login);
+    return navigateTo(ROUTES.adminLogin);
   }
 });
