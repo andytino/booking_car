@@ -1,14 +1,10 @@
 <script lang="ts" setup>
 import type { FormError } from "#ui/types";
+import type { IFormSignUpState } from "./type";
 
-export interface IFormLoginState {
-  email: string;
-  password: string;
-}
+const emit = defineEmits(["signUp"]);
 
-const emit = defineEmits(["login"]);
-
-const formLoginState = reactive<IFormLoginState>({
+const formSignUpState = reactive<IFormSignUpState>({
   email: "",
   password: "",
 });
@@ -20,8 +16,8 @@ const validate = (state: any): FormError[] => {
   return errors;
 };
 
-const handleLogin = () => {
-  emit("login", formLoginState);
+const handleSignUp = () => {
+  emit("signUp", formSignUpState);
 };
 </script>
 
@@ -30,18 +26,18 @@ const handleLogin = () => {
     <UForm
       class="flex flex-col items-center"
       :validate="validate"
-      :state="formLoginState"
-      @submit="handleLogin"
+      :state="formSignUpState"
+      @submit="handleSignUp"
     >
       <UFormGroup label="Email" name="email">
-        <UInput v-model="formLoginState.email" />
+        <UInput v-model="formSignUpState.email" />
       </UFormGroup>
 
       <UFormGroup label="Password" name="password">
-        <UInput v-model="formLoginState.password" type="password" />
+        <UInput v-model="formSignUpState.password" type="password" />
       </UFormGroup>
 
-      <UButton type="submit"> Login </UButton>
+      <UButton type="submit">Sign Up</UButton>
     </UForm>
   </div>
 </template>

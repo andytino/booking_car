@@ -1,16 +1,17 @@
 export const ROUTES = {
-  // user
-  login: "/login",
-  register: "/register",
   home: "/home",
-  booking: "/booking",
 
   // admin
-  adminLogin: "/admin/login",
+  adminLogin: "/admin/signin",
   adminAccount: "/admin/account",
   adminDashboard: "/admin/dashboard",
 
+  // user
+  userSignIn: "/user/signin",
+  userSingUp: "/user/signup",
+  userHome: "/user",
+
   // driver
-  driverLogin: "driver/login",
-  driverHome: "driver/home",
+  driverLogin: "/driver/signin",
+  driverHome: "/driver",
 };

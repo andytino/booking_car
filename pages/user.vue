@@ -1,12 +1,12 @@
 <script lang="ts" setup>
 definePageMeta({
+  layout: "auth",
   middleware: ["auth"],
   colorMode: "light",
 });
 </script>
-
 <template>
   <div>
-    <h1>BOOKING</h1>
+    <h1>User</h1>
   </div>
 </template>

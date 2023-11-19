@@ -1,7 +1,8 @@
 <script lang="ts" setup>
 definePageMeta({
-  colorMode: "light",
+  layout: "auth-admin",
   middleware: ["auth-admin"],
+  colorMode: "light",
 });
 </script>
 

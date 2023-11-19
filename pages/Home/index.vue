@@ -1,20 +1,10 @@
 <script lang="ts" setup>
 definePageMeta({
-  middleware: ["auth"],
+  layout: "default",
   colorMode: "light",
 });
 
 const user = useSupabaseUser();
-const supabase = useSupabaseClient();
-const router = useRouter();
-
-const hdLogout = async () => {
-  try {
-    const { error } = await supabase.auth.signOut();
-    if (error) throw error;
-    router.push("/");
-  } catch (err) {}
-};
 </script>
 <template>
   <div>

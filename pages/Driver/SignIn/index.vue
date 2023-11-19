@@ -1,20 +1,22 @@
 <script lang="ts" setup>
-import type { IFormLoginState } from "~/components/LoginBase.vue";
+import type { IFormSignInState } from "~/components/SignIn/type";
 import { ROUTES } from "~/constants/routes";
 
 definePageMeta({
+  layout: "default",
   colorMode: "light",
 });
+
 const supabase = useSupabaseClient();
 const router = useRouter();
 
-const hdLogin = async (formLogin: IFormLoginState) => {
+const hdLSignIn = async (formSignIn: IFormSignInState) => {
   try {
     const { error } = await supabase.auth.signInWithPassword({
-      email: formLogin.email,
-      password: formLogin.password,
+      email: formSignIn.email,
+      password: formSignIn.password,
     });
-    if (error) console.log(error);
+    if (error) throw error;
 
     router.push(ROUTES.driverLogin);
   } catch (err) {}
@@ -23,8 +25,8 @@ const hdLogin = async (formLogin: IFormLoginState) => {
 
 <template>
   <div class="flex flex-col items-center">
-    <h1 class="font-bold text-xl">DRIVER LOGIN</h1>
+    <h1 class="font-bold text-xl">DRIVER SIGN IN</h1>
 
-    <LoginBase @login="hdLogin" />
+    <SignInFormBase @sign-in="hdLSignIn" />
   </div>
 </template>

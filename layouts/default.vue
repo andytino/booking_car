@@ -2,15 +2,11 @@
 <template>
   <Html>
     <Body>
-      <section class="h-screen flex">
-        <Sidebar></Sidebar>
-        <div class="h-screen w-full relative">
-          <div class="flex flex-col h-full">
-            <Header></Header>
-            <div class="flex-auto h-0 overflow-y-auto py-4 px-5"><slot /></div>
-          </div>
+      <div class="h-screen flex flex-col">
+        <div class="flex-auto px-5 py-10">
+          <slot />
         </div>
-      </section>
+      </div>
     </Body>
   </Html>
 </template>

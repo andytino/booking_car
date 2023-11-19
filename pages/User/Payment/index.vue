@@ -1,13 +1,13 @@
 <script lang="ts" setup>
 definePageMeta({
-  layout: "auth-admin",
-  middleware: ["auth-admin"],
+  layout: "auth",
+  middleware: ["auth"],
   colorMode: "light",
 });
 </script>
 
 <template>
   <div>
-    <h1>Account</h1>
+    <h1>Payment</h1>
   </div>
 </template>

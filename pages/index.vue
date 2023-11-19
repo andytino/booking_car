@@ -5,12 +5,12 @@ definePageMeta({
   colorMode: "light",
 });
 
-const hdNavigateToLogin = () => {
-  navigateTo(ROUTES.login);
+const hdNavigateToSignIn = () => {
+  navigateTo(ROUTES.userSignIn);
 };
 
-const hdNavigateToRegister = () => {
-  navigateTo(ROUTES.register);
+const hdNavigateToSignUp = () => {
+  navigateTo(ROUTES.userSingUp);
 };
 
 // const { data } = await useFetch("/api/test");
@@ -22,7 +22,7 @@ const hdNavigateToRegister = () => {
   <div>
     <h1 class="text-3xl font-bold underline">Hello world!</h1>
 
-    <UButton @click="hdNavigateToLogin">Login</UButton>
-    <UButton @click="hdNavigateToRegister">Register</UButton>
+    <UButton @click="hdNavigateToSignIn">SignIn</UButton>
+    <UButton @click="hdNavigateToSignUp">SignUp</UButton>
   </div>
 </template>

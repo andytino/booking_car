@@ -6,12 +6,12 @@ export const ADMIN_NAVIGATION = (): VerticalNavigationLink[] => {
     {
       label: "DASHBOARD",
       to: ROUTES.adminDashboard,
-      icon: "delete",
+      icon: "dashboard",
     },
     {
       label: "ACCOUNT",
       to: ROUTES.adminAccount,
-      icon: "search",
+      icon: "avatar",
     },
   ];
 };
