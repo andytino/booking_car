@@ -11,7 +11,12 @@ export const ADMIN_NAVIGATION = (): VerticalNavigationLink[] => {
     {
       label: "ACCOUNT",
       to: ROUTES.adminAccount,
-      icon: "avatar",
+      icon: "profile",
+    },
+    {
+      label: "DRIVER",
+      to: ROUTES.adminDriver,
+      icon: "driver",
     },
   ];
 };

@@ -7,7 +7,6 @@ definePageMeta({
   colorMode: "light",
 });
 const supabase = useSupabaseClient();
-const router = useRouter();
 
 const hdSignIn = async (formSignIn: IFormSignInState) => {
   try {
@@ -17,14 +16,15 @@ const hdSignIn = async (formSignIn: IFormSignInState) => {
     });
     if (error) console.log(error);
 
-    router.push(ROUTES.adminDashboard);
+    navigateTo(ROUTES.adminDashboard);
   } catch (err) {}
 };
 </script>
 
 <template>
   <div class="flex flex-col items-center">
-    <h1 class="font-bold text-xl">ADMIN SIGN IN</h1>
-    <SignInFormBase @sign-in="hdSignIn" />
+    <img src="../../../assets/images/call-center-logo.png" alt="" width="80" height="60" />
+    <h1 class="font-bold text-2xl mt-5">Đăng nhập</h1>
+    <SignInFormBase class="mt-10" @sign-in="hdSignIn" :use-sign-up-text="false" />
   </div>
 </template>

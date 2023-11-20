@@ -1,10 +1,13 @@
 export const ROUTES = {
+  main: "/",
   home: "/home",
 
   // admin
-  adminLogin: "/admin/signin",
-  adminAccount: "/admin/account",
+  adminSignIn: "/admin/signin",
   adminDashboard: "/admin/dashboard",
+  adminAccount: "/admin/account",
+  adminCreateAccount: "/admin/account/create",
+  adminDriver: "/admin/driver",
 
   // user
   userSignIn: "/user/signin",
@@ -12,6 +15,6 @@ export const ROUTES = {
   userHome: "/user",
 
   // driver
-  driverLogin: "/driver/signin",
+  driverSignIn: "/driver/signin",
   driverHome: "/driver",
 };

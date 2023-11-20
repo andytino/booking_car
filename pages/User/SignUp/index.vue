@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { IFormSignUpState } from "./type";
+import type { IFormSignUpState } from "~/components/SignUp/type";
 import { ROLES } from "~/types/roles";
 
 definePageMeta({
@@ -7,7 +7,6 @@ definePageMeta({
   colorMode: "light",
 });
 const supabase = useSupabaseClient();
-const router = useRouter();
 
 const formSignUpState = reactive<IFormSignUpState>({
   email: "",
@@ -29,15 +28,15 @@ const handleSignUp = async () => {
 
     if (error) throw error;
 
-    router.push("/login");
+    navigateTo("/login");
   } catch (err) {}
 };
 </script>
 
 <template>
   <div class="flex flex-col items-center">
-    <h1 class="font-bold text-xl">SIGN UP</h1>
-
-    <SignUpFormBase @sign-up="handleSignUp" />
+    <img src="../../../assets/images/user-logo.png" alt="" width="58" height="50" />
+    <h1 class="font-bold text-2xl mt-5">Đăng ký</h1>
+    <SignUpFormBase class="mt-10" @sign-up="handleSignUp" />
   </div>
 </template>

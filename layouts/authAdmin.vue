@@ -7,7 +7,6 @@
         <div class="h-screen w-full relative">
           <div class="flex flex-col h-full">
             <Header></Header>
-            <p>Auth Admin</p>
             <div class="flex-auto h-0 overflow-y-auto py-4 px-5"><slot /></div>
           </div>
         </div>

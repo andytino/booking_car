@@ -7,17 +7,18 @@ definePageMeta({
   colorMode: "light",
 });
 const supabase = useSupabaseClient();
-const router = useRouter();
 
-const hdSignInWithGoogle = async () => {
-  try {
-    const { error } = await supabase.auth.signInWithOAuth({
-      provider: "google",
-    });
-    if (error) console.log(error);
+const hdSignInWithGoogle = async (isSignInWithGoogle: boolean) => {
+  if (isSignInWithGoogle) {
+    try {
+      const { error } = await supabase.auth.signInWithOAuth({
+        provider: "google",
+      });
+      if (error) console.log(error);
 
-    router.push(ROUTES.userHome);
-  } catch (err) {}
+      navigateTo(ROUTES.userHome);
+    } catch (err) {}
+  }
 };
 
 const hdSignIn = async (formSignIn: IFormSignInState) => {
@@ -28,16 +29,20 @@ const hdSignIn = async (formSignIn: IFormSignInState) => {
     });
     if (error) console.log(error);
 
-    router.push(ROUTES.userHome);
+    navigateTo(ROUTES.userHome);
   } catch (err) {}
 };
 </script>
 
 <template>
   <div class="flex flex-col items-center">
-    <h1 class="font-bold text-xl">Sign In</h1>
-    <UButton @click="hdSignInWithGoogle">Google</UButton>
-
-    <SignInFormBase @sign-in="hdSignIn" />
+    <img src="../../../assets/images/user-logo.png" alt="" width="58" height="50" />
+    <h1 class="font-bold text-2xl mt-5">Đăng nhập</h1>
+    <SignInFormBase
+      class="mt-10"
+      :is-sign-in-with-google="true"
+      @sign-in="hdSignIn"
+      @sign-in-with-google="hdSignInWithGoogle"
+    />
   </div>
 </template>
