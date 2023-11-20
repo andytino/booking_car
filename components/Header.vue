@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 const user = useSupabaseUser();
+console.log("user", user.value?.email);
 </script>
 <template>
   <div class="w-full flex items-center py-4 px-5 min-h-[77px]">

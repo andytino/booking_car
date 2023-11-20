@@ -33,6 +33,7 @@ interface Props {
 const props = withDefaults(defineProps<Props>(), {
   urlBack: ROUTES.home,
 });
+const emit = defineEmits(["submit"]);
 
 const formAccountState = reactive<IFormAccountState>({
   email: "",
@@ -50,7 +51,9 @@ const validate = (state: any): FormError[] => {
   return errors;
 };
 
-const hdSubmit = () => {};
+const hdSubmit = () => {
+  emit("submit", formAccountState);
+};
 
 const hdCancel = () => {
   navigateTo(props.urlBack);

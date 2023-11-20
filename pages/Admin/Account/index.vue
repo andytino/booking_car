@@ -61,6 +61,11 @@ const items = (row) => [
 const hdNavigateToCreate = () => {
   navigateTo(ROUTES.adminCreateAccount);
 };
+
+const { data } = await useFetch("/api/users");
+
+console.log("data", data);
+// fetchLibrary();
 </script>
 
 <template>

@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import type { IFormSignUpState } from "~/components/SignUp/type";
+import { ROUTES } from "~/constants/routes";
 import { ROLES } from "~/types/roles";
 
 definePageMeta({
@@ -8,12 +9,7 @@ definePageMeta({
 });
 const supabase = useSupabaseClient();
 
-const formSignUpState = reactive<IFormSignUpState>({
-  email: "",
-  password: "",
-});
-
-const handleSignUp = async () => {
+const handleSignUp = async (formSignUpState: IFormSignUpState) => {
   try {
     const { error } = await supabase.auth.signUp({
       email: formSignUpState.email,
@@ -28,7 +24,7 @@ const handleSignUp = async () => {
 
     if (error) throw error;
 
-    navigateTo("/login");
+    navigateTo(ROUTES.userSignIn);
   } catch (err) {}
 };
 </script>
