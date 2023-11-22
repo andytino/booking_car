@@ -1,8 +1,11 @@
 <template>
   <div>
     <VitePwaManifest />
-    <NuxtLayout>
-      <NuxtPage></NuxtPage>
-    </NuxtLayout>
+    <UContainer>
+      <NuxtLayout>
+        <NuxtPage></NuxtPage>
+      </NuxtLayout>
+    </UContainer>
+    <UNotifications />
   </div>
 </template>

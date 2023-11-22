@@ -1,17 +1,24 @@
 <script lang="ts" setup>
 import type { FormError } from "#ui/types";
 import type { IFormSignInState } from "~/components/SignIn/type";
+import { ROUTES } from "~/constants/routes";
 
 const emit = defineEmits(["signIn", "signInWithGoogle"]);
 
 interface Props {
-  isSignInWithGoogle: boolean;
+  isSignInWithGoogle?: boolean;
   useSignUpText: boolean;
+  isLoading?: boolean;
+  routeSignUp?: string;
+  routeForgotPassword?: string;
 }
 
 const props = withDefaults(defineProps<Props>(), {
   isSignInWithGoogle: false,
   useSignUpText: true,
+  isLoading: false,
+  routeSignUp: ROUTES.main,
+  routeForgotPassword: ROUTES.main,
 });
 
 const formSignInState = reactive<IFormSignInState>({
@@ -21,8 +28,8 @@ const formSignInState = reactive<IFormSignInState>({
 
 const validate = (state: any): FormError[] => {
   const errors = [];
-  if (!state.email) errors.push({ path: "email", message: "Required" });
-  if (!state.password) errors.push({ path: "password", message: "Required" });
+  if (!state.email) errors.push({ path: "email", message: "Bắt buộc!" });
+  if (!state.password) errors.push({ path: "password", message: "Bắt buộc!" });
   return errors;
 };
 
@@ -34,7 +41,13 @@ const hdSignInWithGoogle = () => {
   emit("signInWithGoogle", props.isSignInWithGoogle);
 };
 
-const hdSignUp = () => {};
+const hdSignUp = () => {
+  navigateTo(props.routeSignUp);
+};
+
+const hdNavigateToForgotPassword = () => {
+  navigateTo(props.routeForgotPassword);
+};
 </script>
 
 <template>
@@ -46,12 +59,26 @@ const hdSignUp = () => {};
       @submit="handleSignIn"
     >
       <UFormGroup label="Email" name="email" class="w-60">
-        <UInput v-model="formSignInState.email" color="green" variant="solid" />
+        <UInput v-model="formSignInState.email" color="green" variant="outline" />
       </UFormGroup>
 
-      <UFormGroup label="Password" name="password" class="w-60 mt-5">
-        <UInput v-model="formSignInState.password" type="password" color="green" variant="solid" />
+      <UFormGroup label="Mật khẩu" name="password" class="w-60 mt-5">
+        <UInput
+          v-model="formSignInState.password"
+          type="password"
+          color="green"
+          variant="outline"
+        />
       </UFormGroup>
+      <div class="flex items-center justify-between w-full mt-3">
+        <UCheckbox label="Lưu mật khẩu"></UCheckbox>
+        <span
+          class="text-secondary font-medium cursor-pointer text-xs"
+          @click="hdNavigateToForgotPassword"
+          >Quên mật khẩu</span
+        >
+      </div>
+
       <p v-if="useSignUpText" class="text-xs mt-2">
         Bạn không có tài khoản?
         <span class="text-secondary font-medium cursor-pointer" @click="hdSignUp">Đăng ký</span>
@@ -75,7 +102,7 @@ const hdSignUp = () => {};
         </UButton>
       </template>
 
-      <UButton class="bg-secondary mt-10" type="submit">Đăng nhập</UButton>
+      <UButton class="bg-secondary mt-10" type="submit" :loading="isLoading">Đăng nhập</UButton>
     </UForm>
   </div>
 </template>

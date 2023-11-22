@@ -22,9 +22,14 @@ export default defineAppConfig({
     input: {
       color: {
         green: {
-          solid: "border-1 border-solid border-secondary",
+          outline:
+            "shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-secondary dark:ring-secondary focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400",
         },
       },
+    },
+    notifications: {
+      // Show toasts at the top right of the screen
+      position: "top-0 bottom-auto right-0",
     },
   },
 });

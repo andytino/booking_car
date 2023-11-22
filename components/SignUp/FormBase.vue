@@ -3,6 +3,14 @@ import type { FormError } from "#ui/types";
 import { ROUTES } from "~/constants/routes";
 import type { IFormSignUpState } from "./type";
 
+interface Props {
+  isLoading?: boolean;
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  isLoading: false,
+});
+
 const emit = defineEmits(["signUp"]);
 
 const formSignUpState = reactive<IFormSignUpState>({
@@ -12,8 +20,8 @@ const formSignUpState = reactive<IFormSignUpState>({
 
 const validate = (state: any): FormError[] => {
   const errors = [];
-  if (!state.email) errors.push({ path: "email", message: "Required" });
-  if (!state.password) errors.push({ path: "password", message: "Required" });
+  if (!state.email) errors.push({ path: "email", message: "Bắt buộc!" });
+  if (!state.password) errors.push({ path: "password", message: "Bắt buộc!" });
   return errors;
 };
 
@@ -35,14 +43,19 @@ const hdNavigateToSignIn = () => {
       @submit="handleSignUp"
     >
       <UFormGroup label="Email" name="email" class="w-60">
-        <UInput v-model="formSignUpState.email" color="green" variant="solid" />
+        <UInput v-model="formSignUpState.email" color="green" variant="outline" />
       </UFormGroup>
 
-      <UFormGroup label="Password" name="password" class="w-60 mt-5">
-        <UInput v-model="formSignUpState.password" type="password" color="green" variant="solid" />
+      <UFormGroup label="Mật khẩu" name="password" class="w-60 mt-5">
+        <UInput
+          v-model="formSignUpState.password"
+          type="password"
+          color="green"
+          variant="outline"
+        />
       </UFormGroup>
 
-      <UButton class="bg-secondary mt-10" type="submit">Đăng ký</UButton>
+      <UButton class="bg-secondary mt-10" type="submit" :loading="isLoading">Đăng ký</UButton>
 
       <p class="text-xs mt-4">
         Tôi đã là thành viên!
