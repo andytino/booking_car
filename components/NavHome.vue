@@ -4,15 +4,15 @@ import { ROUTES } from "~/constants/routes";
 const items = [
   [
     {
-      label: "Tài xế",
+      label: "Khách hàng",
       click: () => {
-        navigateTo(ROUTES.driverSignIn);
+        navigateTo(ROUTES.userSignIn);
       },
     },
     {
-      label: "Người dùng",
+      label: "Tài xế",
       click: () => {
-        navigateTo(ROUTES.userSignIn);
+        navigateTo(ROUTES.driverSignIn);
       },
     },
   ],

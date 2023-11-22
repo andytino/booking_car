@@ -5,8 +5,8 @@ import { ROLES } from "~/types/roles";
 
 definePageMeta({
   layout: "default",
-  colorMode: "light",
 });
+
 const supabase = useSupabaseClient();
 const toast = useToast();
 const isLoading = ref<boolean>(false);
@@ -19,8 +19,6 @@ const hdSignInWithGoogle = async (isSignInWithGoogle: boolean) => {
         provider: "google",
       });
       if (error) throw error;
-
-      navigateTo(ROUTES.userHome);
     } catch (err) {
       toast.add({ title: "Lỗi!!", color: "red" });
       isLoading.value = false;
@@ -52,16 +50,18 @@ const hdSignIn = async (formSignIn: IFormSignInState) => {
 
 <template>
   <div class="flex flex-col items-center">
-    <img src="../../../assets/images/user-logo.png" alt="" width="58" height="50" />
+    <SettingGroup></SettingGroup>
+    <img src="../../../assets/images/user-logo.png" alt="" width="58" height="50" class="mt-10" />
     <h1 class="font-bold text-2xl mt-5">Đăng nhập</h1>
     <SignInFormBase
       class="mt-10"
+      :is-loading="isLoading"
       :is-sign-in-with-google="true"
+      :route-forgot-password="ROUTES.userForgotPassword"
       @sign-in="hdSignIn"
       @sign-in-with-google="hdSignInWithGoogle"
-      :is-loading="isLoading"
     />
-    <span class="underline text-xs cursor-pointer mt-4" @click="navigateTo(ROUTES.userHome)"
+    <span class="underline text-xs cursor-pointer mt-4" @click="navigateTo(ROUTES.main)"
       >Quay lại Trang chủ</span
     >
   </div>

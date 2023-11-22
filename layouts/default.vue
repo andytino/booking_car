@@ -3,7 +3,7 @@
   <Html>
     <Body>
       <div class="h-screen flex flex-col">
-        <div class="flex-auto px-5 py-10">
+        <div class="flex-auto px-5 py-10 mx-auto">
           <slot />
         </div>
       </div>

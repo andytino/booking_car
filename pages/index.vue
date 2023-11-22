@@ -1,18 +1,8 @@
 <script lang="ts" setup>
-import { ROUTES } from "~/constants/routes";
-
 definePageMeta({
   colorMode: "light",
   layout: "home-layout",
 });
-
-const hdNavigateToSignIn = () => {
-  navigateTo(ROUTES.userSignIn);
-};
-
-const hdNavigateToSignUp = () => {
-  navigateTo(ROUTES.userSingUp);
-};
 
 // const { data } = await useFetch("/api/test");
 

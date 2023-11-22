@@ -13,21 +13,21 @@ export default {
       colors: {
         secondary: "#ADCE74",
         green: {
-          50: '#ADCE74',
-          100: "#61B15A"
+          50: "#ADCE74",
+          100: "#61B15A",
         },
         yellow: {
-          50: "#FFF76A"
+          50: "#FFF76A",
         },
-        orange :{
-          50:"#FFCE89"
+        orange: {
+          50: "#FFCE89",
         },
         blue: {
           50: "#8B9CB3",
         },
         gray: {
-          50: "#A9A9A9"
-        }
+          50: "#A9A9A9",
+        },
       },
     },
   },

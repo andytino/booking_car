@@ -7,7 +7,7 @@ const emit = defineEmits(["signIn", "signInWithGoogle"]);
 
 interface Props {
   isSignInWithGoogle?: boolean;
-  useSignUpText: boolean;
+  useSignUpText?: boolean;
   isLoading?: boolean;
   routeSignUp?: string;
   routeForgotPassword?: string;
@@ -71,7 +71,11 @@ const hdNavigateToForgotPassword = () => {
         />
       </UFormGroup>
       <div class="flex items-center justify-between w-full mt-3">
-        <UCheckbox label="Lưu mật khẩu"></UCheckbox>
+        <UCheckbox>
+          <template #label>
+            <span class="text-xs">Lưu mật khẩu</span>
+          </template>
+        </UCheckbox>
         <span
           class="text-secondary font-medium cursor-pointer text-xs"
           @click="hdNavigateToForgotPassword"
@@ -79,7 +83,7 @@ const hdNavigateToForgotPassword = () => {
         >
       </div>
 
-      <p v-if="useSignUpText" class="text-xs mt-2">
+      <p v-if="useSignUpText" class="text-xs mt-4">
         Bạn không có tài khoản?
         <span class="text-secondary font-medium cursor-pointer" @click="hdSignUp">Đăng ký</span>
       </p>
@@ -93,9 +97,11 @@ const hdNavigateToForgotPassword = () => {
         <UButton
           color="white"
           class="flex justify-center w-full mt-5 border-[1.3px] border-solid border-secondary py-2"
-          label="Đăng nhập với Google"
           @click="hdSignInWithGoogle"
         >
+          <template #default>
+            <span class="text-black dark:text-white">Đăng nhập với Googles</span>
+          </template>
           <template #leading>
             <SvgIcon icon="google-logo" width="24" height="24" />
           </template>

@@ -34,13 +34,17 @@ const hdLSignIn = async (formSignIn: IFormSignInState) => {
     <h1 class="font-bold text-2xl mt-5">Đăng nhập</h1>
     <SignInFormBase
       class="mt-10"
-      @sign-in="hdLSignIn"
       :use-sign-up-text="false"
       :is-loading="isLoading"
+      :route-forgot-password="ROUTES.driverForgotPassword"
+      @sign-in="hdLSignIn"
     />
     <p class="max-w-[250px] flex-wrap mt-8 p-4 bg-blue-50 text-white rounded-xl text-sm">
       Bạn muốn cộng tác làm tài xế. <br />Hãy liên hệ Tổng đài
       <span class="font-medium">1900.0000</span> để được hướng dẫn.
     </p>
+    <span class="underline text-xs cursor-pointer mt-4" @click="navigateTo(ROUTES.main)"
+      >Quay lại Trang chủ</span
+    >
   </div>
 </template>

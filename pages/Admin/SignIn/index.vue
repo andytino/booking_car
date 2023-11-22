@@ -33,9 +33,10 @@ const hdSignIn = async (formSignIn: IFormSignInState) => {
     <h1 class="font-bold text-2xl mt-5">Đăng nhập</h1>
     <SignInFormBase
       class="mt-10"
-      @sign-in="hdSignIn"
       :use-sign-up-text="false"
       :is-loading="isLoading"
+      :route-forgot-password="ROUTES.adminForgotPassword"
+      @sign-in="hdSignIn"
     />
   </div>
 </template>
