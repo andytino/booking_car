@@ -51,7 +51,7 @@ const hdSignIn = async (formSignIn: IFormSignInState) => {
 <template>
   <div class="flex flex-col items-center">
     <SettingGroup></SettingGroup>
-    <img src="../../../assets/images/user-logo.png" alt="" width="58" height="50" class="mt-10" />
+    <img src="../../../assets/images/user-logo.png" alt="" width="58" height="50" />
     <h1 class="font-bold text-2xl mt-5">Đăng nhập</h1>
     <SignInFormBase
       class="mt-10"

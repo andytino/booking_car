@@ -27,26 +27,37 @@ const statusOptions = [
 ];
 
 interface Props {
-  urlBack: string;
+  urlBack?: string;
+  isLoading?: boolean;
+  isEdit?: boolean;
+  user: IFormAccountState;
 }
 
 const props = withDefaults(defineProps<Props>(), {
   urlBack: ROUTES.home,
+  isLoading: false,
+  isEdit: false,
 });
 const emit = defineEmits(["submit"]);
 
-const formAccountState = reactive<IFormAccountState>({
-  email: "",
-  password: "",
-  fullName: "",
-  role: ROLES.staff,
-  isActive: STATUS.ACTIVE,
-});
+const formAccountState = reactive<IFormAccountState>(props.user);
+
+watch(
+  () => props.user,
+  () => {
+    const { email, fullName, phoneNumber, isActive, role } = props.user;
+    formAccountState.email = email;
+    formAccountState.fullName = fullName;
+    formAccountState.phoneNumber = phoneNumber;
+    formAccountState.isActive = isActive;
+    formAccountState.role = role;
+  },
+);
 
 const validate = (state: any): FormError[] => {
   const errors = [];
   if (!state.email) errors.push({ path: "email", message: "Bắt buộc!" });
-  if (!state.password) errors.push({ path: "password", message: "Bắt buộc!" });
+  if (!state.password && !props.isEdit) errors.push({ path: "password", message: "Bắt buộc!" });
   if (!state.fullName) errors.push({ path: "fullName", message: "Bắt buộc!" });
   return errors;
 };
@@ -71,7 +82,7 @@ const hdCancel = () => {
         <template #label>
           <span>Email</span>
         </template>
-        <UInput v-model="formAccountState.email" class="ml-20" />
+        <UInput v-model="formAccountState.email" class="ml-20 w-96" :disabled="isEdit" />
         <template #error="{ error }">
           <span
             v-if="error"
@@ -83,11 +94,16 @@ const hdCancel = () => {
         </template>
       </UFormGroup>
 
-      <UFormGroup name="password" class="w-96 flex gap-5 mt-7 relative" required>
+      <UFormGroup
+        v-if="!isEdit"
+        name="password"
+        class="w-full flex gap-5 mt-7 relative"
+        :required="!isEdit"
+      >
         <template #label>
           <span>Mật khẩu</span>
         </template>
-        <UInput v-model="formAccountState.password" type="password" class="ml-9" />
+        <UInput v-model="formAccountState.password" type="password" class="ml-9 w-96" />
         <template #error="{ error }">
           <span
             v-if="error"
@@ -99,11 +115,11 @@ const hdCancel = () => {
         </template>
       </UFormGroup>
 
-      <UFormGroup name="fullName" class="w-96 flex gap-5 mt-7 relative" required>
+      <UFormGroup name="fullName" class="w-full flex gap-5 mt-7 relative" required>
         <template #label>
           <span>Họ và tên</span>
         </template>
-        <UInput v-model="formAccountState.fullName" class="ml-9" />
+        <UInput v-model="formAccountState.fullName" class="ml-9 w-96" />
         <template #error="{ error }">
           <span
             v-if="error"
@@ -115,11 +131,27 @@ const hdCancel = () => {
         </template>
       </UFormGroup>
 
-      <UFormGroup name="role" class="w-full flex gap-5 mt-7" required>
+      <UFormGroup name="phoneNumber" class="w-full flex gap-5 mt-7 relative">
+        <template #label>
+          <span>Số điện thoại</span>
+        </template>
+        <UInput v-model="formAccountState.phoneNumber" class="ml-5 w-96" />
+        <template #error="{ error }">
+          <span
+            v-if="error"
+            class="absolute left-32 -bottom-4"
+            :class="[error ? 'text-red-500 dark:text-red-400' : '']"
+          >
+            {{ error ? error : "lỗi" }}
+          </span>
+        </template>
+      </UFormGroup>
+
+      <UFormGroup name="role" class="w-full flex gap-5 mt-7">
         <template #label>
           <span>Vai trò</span>
         </template>
-        <div class="flex gap-4 ml-14">
+        <div class="flex gap-4 ml-16">
           <URadio
             v-for="role of roleOptions"
             :key="role.value"
@@ -129,11 +161,11 @@ const hdCancel = () => {
         </div>
       </UFormGroup>
 
-      <UFormGroup name="isActive" class="w-full flex gap-5 mt-7" required>
+      <UFormGroup name="isActive" class="w-full flex gap-5 mt-7">
         <template #label>
           <span>Trạng thái</span>
         </template>
-        <div class="flex gap-4 ml-8">
+        <div class="flex gap-4 ml-10">
           <URadio
             v-for="status of statusOptions"
             :key="status.value"
@@ -144,7 +176,9 @@ const hdCancel = () => {
       </UFormGroup>
 
       <div class="flex justify-center gap-5 mt-10 ml-32">
-        <UButton class="bg-secondary w-20 flex justify-center" type="submit">Tạo</UButton>
+        <UButton class="bg-secondary w-20 flex justify-center" type="submit" :loading="isLoading"
+          >Tạo</UButton
+        >
         <UButton class="bg-gray-50 text-black w-20 flex justify-center" @click="hdCancel"
           >Huỷ</UButton
         >

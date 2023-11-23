@@ -7,8 +7,9 @@ export enum STATUS {
 
 export interface IFormAccountState {
   email: string;
-  password: string;
+  password?: string;
   fullName: string;
   role: ROLES;
   isActive: STATUS;
+  phoneNumber: string;
 }

@@ -28,7 +28,7 @@ export default defineNuxtConfig({
       ],
     },
   },
-  modules: ["@pinia/nuxt", "@nuxt/ui", "@nuxtjs/supabase", "@vite-pwa/nuxt"],
+  modules: ["@pinia/nuxt", "@nuxt/ui", "@nuxtjs/supabase", "@vite-pwa/nuxt", "@pinia/nuxt"],
   supabase: {
     redirect: false,
   },

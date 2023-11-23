@@ -3,6 +3,7 @@ import { ADMIN_NAVIGATION } from "~/constants/navigation";
 import { ROUTES } from "~/constants/routes";
 
 const supabase = useSupabaseClient();
+const user = useSupabaseUser();
 
 const isMinimize = ref<boolean>(true);
 
@@ -11,7 +12,7 @@ const hdShowSidebar = () => {
 };
 
 const SIDEBAR = computed(() => {
-  return ADMIN_NAVIGATION();
+  return ADMIN_NAVIGATION().filter((i) => i.role.includes(user.value?.user_metadata.role_id || 0));
 });
 
 const hdSignOut = async () => {

@@ -3,7 +3,7 @@ const colorMode = useColorMode();
 
 const isDark = computed({
   get() {
-    return colorMode.value === "dark";
+    return colorMode.value === "light";
   },
   set() {
     colorMode.preference = colorMode.value === "dark" ? "light" : "dark";
@@ -26,7 +26,7 @@ const items = [
 ];
 </script>
 <template>
-  <div class="w-full flex justify-end">
+  <div class="w-full flex justify-end mb-10">
     <UDropdown :items="items" :popper="{ placement: 'bottom-start' }">
       <SvgIcon icon="global" width="18" height="18" class="text-transparent cursor-pointer" />
     </UDropdown>

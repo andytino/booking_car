@@ -1,59 +1,59 @@
 <script lang="ts" setup>
 import { ROUTES } from "~/constants/routes";
+import type { Database } from "~/types/supabase";
 
 definePageMeta({
   layout: "auth-admin",
   middleware: ["auth-admin"],
   colorMode: "light",
 });
-const people = [
-  {
-    id: 1,
-    name: "Lindsay Walton",
-    title: "Front-end Developer",
-    email: "lindsay.walton@example.com",
-    role: "Member",
-  },
-  {
-    id: 2,
-    name: "Courtney Henry",
-    title: "Designer",
-    email: "courtney.henry@example.com",
-    role: "Admin",
-  },
-];
+
+type IProfiles = Database["public"]["Tables"]["profiles"]["Row"];
+const toast = useToast();
+
 const columns = [
   {
-    key: "name",
+    key: "full_name",
     label: "Name",
   },
-  {
-    key: "title",
-    label: "Title",
-  },
+
   {
     key: "email",
     label: "Email",
   },
-  {
-    key: "role",
-    label: "Role",
-  },
+
   {
     key: "actions",
   },
 ];
 
-const items = (row) => [
+const items = (row: IProfiles) => [
   [
     {
       label: "Chỉnh sửa",
       icon: "edit",
-      click: () => console.log("Edit", row.id),
+      click: () => {
+        navigateTo(ROUTES.adminEditAccount(row.id));
+      },
     },
     {
       label: "Xoá",
       icon: "trash",
+      click: async () => {
+        try {
+          const { error } = await useFetch("/api/users", {
+            method: "PUT",
+            body: {
+              id: row.id,
+            },
+          });
+          if (error.value) throw error;
+
+          getAccounts();
+        } catch (err) {
+          toast.add({ title: "Lỗi!!", color: "red" });
+        }
+      },
     },
   ],
 ];
@@ -62,10 +62,14 @@ const hdNavigateToCreate = () => {
   navigateTo(ROUTES.adminCreateAccount);
 };
 
-const { data } = await useFetch("/api/users");
+const accounts = ref<IProfiles[]>([]);
 
-console.log("data", data);
-// fetchLibrary();
+const getAccounts = async () => {
+  const { data } = await useFetch("/api/users");
+  accounts.value = data.value?.data || [];
+};
+
+getAccounts();
 </script>
 
 <template>
@@ -75,7 +79,7 @@ console.log("data", data);
       <UButton class="bg-secondary w-20 justify-center" @click="hdNavigateToCreate">Tạo</UButton>
     </div>
     <div>
-      <UTable :rows="people" :columns="columns">
+      <UTable :rows="accounts" :columns="columns">
         <template #actions-data="{ row }">
           <UDropdown :items="items(row)">
             <UButton color="gray" variant="ghost">

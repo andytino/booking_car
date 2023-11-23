@@ -10,26 +10,29 @@ definePageMeta({
   colorMode: "light",
 });
 
+const route = useRoute();
 const toast = useToast();
+
+const idAccount = route.params.id || "";
 const isLoading = ref<boolean>(false);
 
-const newUser: IFormAccountState = {
+const user = ref<IFormAccountState>({
   email: "",
   password: "",
   fullName: "",
   role: ROLES.staff,
   isActive: STATUS.ACTIVE,
   phoneNumber: "",
-};
+});
 
-const hdCreateAccount = async (formAccountState: IFormAccountState) => {
+const hdEditAccount = async (formAccountState: IFormAccountState) => {
+  console.log("formAccountState", formAccountState);
+
   try {
     isLoading.value = true;
-    const { error } = await useFetch("/api/users", {
-      method: "POST",
+    const { error } = await useFetch(`/api/user/${idAccount}`, {
+      method: "PUT",
       body: {
-        email: formAccountState.email,
-        password: formAccountState.password,
         role_id: formAccountState.role,
         is_active: formAccountState.isActive,
         full_name: formAccountState.fullName,
@@ -43,17 +46,37 @@ const hdCreateAccount = async (formAccountState: IFormAccountState) => {
     isLoading.value = false;
   }
 };
+
+const getUser = async () => {
+  try {
+    const { data, error } = await useFetch(`/api/user/${idAccount}`);
+
+    if (error.value) throw error;
+    const result = data.value?.data;
+    console.log("result", result);
+    user.value = {
+      email: result?.email || "",
+      fullName: result?.full_name || "",
+      role: result?.role_id || 4,
+      isActive: STATUS[result?.is_active ? "ACTIVE" : "INACTIVE"],
+      phoneNumber: result?.phone_number || "",
+    };
+  } catch (err) {}
+};
+
+getUser();
 </script>
 <template>
-  <div class="flex flex-col pl-10">
+  <div class="flex flex-col pl-20">
     <BackBtn :url-back="ROUTES.adminAccount"></BackBtn>
-    <h1 class="font-medium text-2xl mt-5">Tạo tài khoản</h1>
+    <h1 class="font-medium text-2xl">Chỉnh sửa tài khoản</h1>
     <AccountFormBase
       class="mt-5"
+      :user="user"
       :url-back="ROUTES.adminAccount"
       :is-loading="isLoading"
-      :user="newUser"
-      @submit="hdCreateAccount"
+      :is-edit="true"
+      @submit="hdEditAccount"
     ></AccountFormBase>
   </div>
 </template>
