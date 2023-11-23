@@ -23,7 +23,7 @@ const hdNavigateToSignUp = () => {
 };
 </script>
 <template>
-  <div class="w-full flex items-center py-4 px-5">
+  <div class="w-full flex items-center py-4 px-5 bg-secondary">
     <!-- <div><p>Logo</p></div> -->
     <div class="flex-auto"></div>
     <div class="flex items-center">

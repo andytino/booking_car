@@ -36,6 +36,7 @@ export default defineNuxtConfig({
     manifest: {
       name: "Booking_Car",
       short_name: "Booking Car",
+
       description: "Đồ án môn nhập môn lập trình",
       background_color: "#FFFFFF",
       theme_color: "#FFFFFF",
@@ -64,11 +65,11 @@ export default defineNuxtConfig({
         },
       ],
     },
-    // workbox: {
-    //   globPatterns: ["**/*.{js,css}"],
-    //   navigateFallback: null,
-    //   cleanupOutdatedCaches: true,
-    // },
+    workbox: {
+      globPatterns: ["**/*.{js,css}"],
+      navigateFallback: "/",
+      // cleanupOutdatedCaches: true,
+    },
     // devOptions: {
     //   enabled: true,
     //   type: "module",

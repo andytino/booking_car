@@ -6,14 +6,16 @@ definePageMeta({
 });
 </script>
 <template>
-  <div class="relative w-full px-8">
-    <div>
-      <p class="text-white text-xs">Hãy đặt</p>
-      <h1 class="text-3xl font-bold">BOOK</h1>
-      <p class="text-xs">Đưa bạn đến bất cứ đâu</p>
+  <div class="relative px-8">
+    <div class="ml-16 sm:ml-40 md:ml-0 md:flex md:justify-center">
+      <div>
+        <p class="text-white text-xs md:text-black font-medium">Hãy đặt</p>
+        <h1 class="text-3xl font-bold md:text-secondary">BOOK</h1>
+        <p class="text-xs font-medium">Đưa bạn đến bất cứ đâu</p>
+      </div>
     </div>
     <div class="absolute -top-40 left-0 -z-10 w-full h-[1100px]">
-      <img src="../assets/images/Vector.png" alt="" class="absolute" />
+      <img src="../assets/images/Vector.png" alt="" class="absolute w-full md:hidden" />
       <img
         src="../assets/images/bg-1.png"
         alt=""

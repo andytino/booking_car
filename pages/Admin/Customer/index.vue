@@ -24,10 +24,6 @@ const columns = [
   },
 
   {
-    key: "role_name",
-    label: "Vai trò",
-  },
-  {
     key: "phone_number",
     label: "Số điện thoại",
   },
