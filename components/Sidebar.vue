@@ -27,11 +27,11 @@ const hdSignOut = async () => {
   <div class="h-full flex flex-col items-center bg-secondary">
     <div class="flex items-center w-full py-4">
       <div class="flex-auto flex justify-center">
-        <SvgIcon icon="logo" width="40" height="45" />
+        <SvgIcon icon="logo" width="50" height="55" />
       </div>
       <SvgIcon class="text-white mr-2" icon="menu" width="24" height="24" />
     </div>
-    <UVerticalNavigation :links="SIDEBAR" class="flex-auto py-4">
+    <UVerticalNavigation :links="SIDEBAR" class="flex-auto py-4 w-64">
       <template #default="{ link }">
         <p class="group-hover:text-secondary relative flex">
           <SvgIcon :icon="link.icon" width="20" class="mr-2"></SvgIcon>
@@ -39,6 +39,6 @@ const hdSignOut = async () => {
         </p>
       </template>
     </UVerticalNavigation>
-    <UButton class="w-fit bg-blue-50 mb-10" label="Sign out" @click="hdSignOut"> </UButton>
+    <UButton class="w-fit bg-blue-50 mb-10" label="Đăng xuất" @click="hdSignOut"> </UButton>
   </div>
 </template>

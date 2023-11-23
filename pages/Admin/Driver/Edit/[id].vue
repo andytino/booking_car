@@ -1,7 +1,7 @@
 <script lang="ts" setup>
-import { STATUS, type IFormAccountState } from "~/components/Account/type";
+import { ROLES } from "../../../../types/roles";
+import { STATUS, type IFormDriverState } from "~/components/Driver/type";
 import { ROUTES } from "~/constants/routes";
-import { ROLES } from "~/types/roles";
 
 definePageMeta({
   layout: "auth-admin",
@@ -12,51 +12,52 @@ definePageMeta({
 const route = useRoute();
 const toast = useToast();
 
-const idAccount = route.params.id || "";
+const idDriver = route.params.id || "";
 const isLoading = ref<boolean>(false);
 
-const user = ref<IFormAccountState>({
+const driver = ref<IFormDriverState>({
   email: "",
-  password: "",
   fullName: "",
-  role: ROLES.staff,
   isActive: STATUS.ACTIVE,
   phoneNumber: "",
+  citizenId: "",
 });
 
-const hdEditAccount = async (formAccountState: IFormAccountState) => {
+const hdEditDriver = async (formAccountState: IFormDriverState) => {
   try {
     isLoading.value = true;
-    const { error } = await useFetch(`/api/user/${idAccount}`, {
+    const { error } = await useFetch(`/api/driver/${idDriver}`, {
       method: "PATCH",
       body: {
-        role_id: formAccountState.role,
         is_active: formAccountState.isActive,
         full_name: formAccountState.fullName,
         phone_number: formAccountState.phoneNumber,
+        citizen_id: formAccountState.citizenId,
+        is_online: STATUS.INACTIVE,
+        role_id: ROLES.driver,
       },
     });
     if (error.value) throw error;
-    navigateTo(ROUTES.adminAccount);
+    navigateTo(ROUTES.adminDriver);
   } catch (err) {
     toast.add({ title: "Lỗi!!", color: "red" });
     isLoading.value = false;
   }
 };
 
-const getUser = async () => {
+const getDriver = async () => {
   try {
     isLoading.value = true;
-    const { data, error } = await useFetch(`/api/user/${idAccount}`);
+    const { data, error } = await useFetch(`/api/driver/${idDriver}`);
 
     if (error.value) throw error;
     const result = data.value?.data;
-    user.value = {
+    driver.value = {
       email: result?.email || "",
       fullName: result?.full_name || "",
-      role: result?.role_id || 4,
       isActive: STATUS[result?.is_active ? "ACTIVE" : "INACTIVE"],
       phoneNumber: result?.phone_number || "",
+      citizenId: result?.citizen_id || "",
     };
     isLoading.value = false;
   } catch (err) {
@@ -64,19 +65,19 @@ const getUser = async () => {
   }
 };
 
-getUser();
+getDriver();
 </script>
 <template>
   <div class="flex flex-col pl-20">
     <BackBtn :url-back="ROUTES.adminAccount"></BackBtn>
     <h1 class="font-medium text-2xl">Chỉnh sửa tài khoản</h1>
-    <AccountFormBase
+    <DriverFormBase
       class="mt-5"
-      :user="user"
+      :driver="driver"
       :url-back="ROUTES.adminAccount"
       :is-loading="isLoading"
       :is-edit="true"
-      @submit="hdEditAccount"
-    ></AccountFormBase>
+      @submit="hdEditDriver"
+    ></DriverFormBase>
   </div>
 </template>

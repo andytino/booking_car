@@ -1,19 +1,7 @@
 <script lang="ts" setup>
 import type { FormError } from "#ui/types";
-import { STATUS, type IFormAccountState } from "./type";
-import { ROLES } from "~/types/roles";
+import { STATUS, type IFormDriverState } from "./type";
 import { ROUTES } from "~/constants/routes";
-
-const roleOptions = [
-  {
-    label: "Admin",
-    value: ROLES.admin,
-  },
-  {
-    label: "Nhân viên",
-    value: ROLES.staff,
-  },
-];
 
 const statusOptions = [
   {
@@ -30,7 +18,7 @@ interface Props {
   urlBack?: string;
   isLoading?: boolean;
   isEdit?: boolean;
-  user: IFormAccountState;
+  driver: IFormDriverState;
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -40,17 +28,18 @@ const props = withDefaults(defineProps<Props>(), {
 });
 const emit = defineEmits(["submit"]);
 
-const formAccountState = reactive<IFormAccountState>(props.user);
+const formDriverState = reactive<IFormDriverState>(props.driver);
 
 watch(
-  () => props.user,
+  () => props.driver,
   () => {
-    const { email, fullName, phoneNumber, isActive, role } = props.user;
-    formAccountState.email = email;
-    formAccountState.fullName = fullName;
-    formAccountState.phoneNumber = phoneNumber;
-    formAccountState.isActive = isActive;
-    formAccountState.role = role;
+    const { email, fullName, phoneNumber, isActive, role, citizenId } = props.driver;
+    formDriverState.email = email;
+    formDriverState.fullName = fullName;
+    formDriverState.phoneNumber = phoneNumber;
+    formDriverState.isActive = isActive;
+    formDriverState.role = role;
+    formDriverState.citizenId = citizenId;
   },
 );
 
@@ -63,7 +52,7 @@ const validate = (state: any): FormError[] => {
 };
 
 const hdSubmit = () => {
-  emit("submit", formAccountState);
+  emit("submit", formDriverState);
 };
 
 const hdCancel = () => {
@@ -75,7 +64,7 @@ const hdCancel = () => {
     <UForm
       class="flex flex-col items-start"
       :validate="validate"
-      :state="formAccountState"
+      :state="formDriverState"
       @submit="hdSubmit"
     >
       <CustomLoading v-if="isLoading"></CustomLoading>
@@ -83,7 +72,7 @@ const hdCancel = () => {
         <template #label>
           <span>Email</span>
         </template>
-        <UInput v-model="formAccountState.email" class="ml-20 w-96" :disabled="isEdit" />
+        <UInput v-model="formDriverState.email" class="ml-28 w-96" :disabled="isEdit" />
         <template #error="{ error }">
           <span
             v-if="error"
@@ -104,7 +93,7 @@ const hdCancel = () => {
         <template #label>
           <span>Mật khẩu</span>
         </template>
-        <UInput v-model="formAccountState.password" type="password" class="ml-9 w-96" />
+        <UInput v-model="formDriverState.password" type="password" class="ml-[70px] w-96" />
         <template #error="{ error }">
           <span
             v-if="error"
@@ -120,7 +109,7 @@ const hdCancel = () => {
         <template #label>
           <span>Họ và tên</span>
         </template>
-        <UInput v-model="formAccountState.fullName" class="ml-9 w-96" />
+        <UInput v-model="formDriverState.fullName" class="ml-[70px] w-96" />
         <template #error="{ error }">
           <span
             v-if="error"
@@ -136,7 +125,7 @@ const hdCancel = () => {
         <template #label>
           <span>Số điện thoại</span>
         </template>
-        <UInput v-model="formAccountState.phoneNumber" class="ml-5 w-96" />
+        <UInput v-model="formDriverState.phoneNumber" class="ml-14 w-96" />
         <template #error="{ error }">
           <span
             v-if="error"
@@ -148,30 +137,31 @@ const hdCancel = () => {
         </template>
       </UFormGroup>
 
-      <UFormGroup name="role" class="w-full flex gap-5 mt-7">
+      <UFormGroup name="citizenId" class="w-full flex gap-5 mt-7 relative">
         <template #label>
-          <span>Vai trò</span>
+          <span>Căn cước công dân</span>
         </template>
-        <div class="flex gap-4 ml-16">
-          <URadio
-            v-for="role of roleOptions"
-            :key="role.value"
-            v-model="formAccountState.role"
-            v-bind="role"
-            :disabled="formAccountState.role === ROLES.admin"
-          ></URadio>
-        </div>
+        <UInput v-model="formDriverState.citizenId" class="ml-4 w-96" />
+        <template #error="{ error }">
+          <span
+            v-if="error"
+            class="absolute left-32 -bottom-4"
+            :class="[error ? 'text-red-500 dark:text-red-400' : '']"
+          >
+            {{ error ? error : "lỗi" }}
+          </span>
+        </template>
       </UFormGroup>
 
       <UFormGroup name="isActive" class="w-full flex gap-5 mt-7">
         <template #label>
           <span>Trạng thái</span>
         </template>
-        <div class="flex gap-4 ml-10">
+        <div class="flex gap-4 ml-[78px]">
           <URadio
             v-for="status of statusOptions"
             :key="status.value"
-            v-model="formAccountState.isActive"
+            v-model="formDriverState.isActive"
             v-bind="status"
           ></URadio>
         </div>

@@ -1,10 +1,10 @@
 <script lang="ts" setup>
-const isLoading = ref(false);
+const isLoading = ref(true);
 const nuxtApp = useNuxtApp();
 
-nuxtApp.hook("page:start", () => {
-  isLoading.value = true;
-});
+// nuxtApp.hook("page:start", () => {
+//   isLoading.value = true;
+// });
 
 nuxtApp.hook("page:finish", () => {
   isLoading.value = false;

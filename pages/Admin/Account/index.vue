@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import { ROLES } from "../../../types/roles";
 import { ROUTES } from "~/constants/routes";
 import type { Database } from "~/types/supabase";
 
@@ -10,16 +11,26 @@ definePageMeta({
 
 type IProfiles = Database["public"]["Tables"]["profiles"]["Row"];
 const toast = useToast();
+const isLoading = ref<boolean>(false);
 
 const columns = [
   {
     key: "full_name",
-    label: "Name",
+    label: "Họ và tên",
   },
 
   {
     key: "email",
     label: "Email",
+  },
+
+  {
+    key: "role_name",
+    label: "Vai trò",
+  },
+  {
+    key: "phone_number",
+    label: "Số điện thoại",
   },
 
   {
@@ -39,6 +50,7 @@ const items = (row: IProfiles) => [
     {
       label: "Xoá",
       icon: "trash",
+      disabled: row.role_id === ROLES.admin,
       click: async () => {
         try {
           const { error } = await useFetch(`/api/user/${row.id}`, {
@@ -62,8 +74,21 @@ const hdNavigateToCreate = () => {
 const accounts = ref<IProfiles[]>([]);
 
 const getAccounts = async () => {
-  const { data } = await useFetch("/api/users");
-  accounts.value = data.value?.data || [];
+  try {
+    isLoading.value = true;
+    const { data, error } = await useFetch("/api/users");
+    if (error.value) throw error.value.message;
+    accounts.value =
+      data.value?.data?.map((account) => {
+        return {
+          ...account,
+          role_name: ROLES[account.role_id || 4],
+        };
+      }) || [];
+    isLoading.value = false;
+  } catch (err) {
+    isLoading.value = false;
+  }
 };
 
 getAccounts();
@@ -71,12 +96,14 @@ getAccounts();
 
 <template>
   <div>
-    <h1>Account</h1>
+    <h1 class="font-medium text-xl">DANH SÁCH ADMIN, TỔNG ĐÀI VIÊN</h1>
     <div class="flex justify-end">
-      <UButton class="bg-secondary w-20 justify-center" @click="hdNavigateToCreate">Tạo</UButton>
+      <UButton class="bg-secondary w-20 justify-center" @click="hdNavigateToCreate"
+        >Tạo mới</UButton
+      >
     </div>
     <div>
-      <UTable :rows="accounts" :columns="columns">
+      <UTable :rows="accounts" :columns="columns" :loading="isLoading">
         <template #actions-data="{ row }">
           <UDropdown :items="items(row)">
             <UButton color="gray" variant="ghost">

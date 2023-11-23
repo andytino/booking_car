@@ -15,9 +15,10 @@ const hdBack = () => {
 </script>
 
 <template>
-  <div>
-    <div class="text-blue-50 underline hover:text-secondary cursor-pointer" @click="hdBack">
-      Trở lại
-    </div>
+  <div
+    class="text-blue-50 text-sm underline hover:text-secondary cursor-pointer mb-2"
+    @click="hdBack"
+  >
+    Trở lại
   </div>
 </template>

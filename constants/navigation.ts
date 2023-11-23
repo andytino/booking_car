@@ -9,25 +9,25 @@ interface VerticalNavigationLinkExtend extends VerticalNavigationLink {
 export const ADMIN_NAVIGATION = (): VerticalNavigationLinkExtend[] => {
   return [
     {
-      label: "DASHBOARD",
+      label: "TRANG CHỦ",
       to: ROUTES.adminDashboard,
       icon: "dashboard",
       role: [ROLES.admin],
     },
     {
-      label: "ACCOUNT",
+      label: "ADMIN - TỔNG ĐÀI VIÊN",
       to: ROUTES.adminAccount,
       icon: "profile",
       role: [ROLES.admin],
     },
     {
-      label: "DRIVER",
+      label: "TÀI XẾ",
       to: ROUTES.adminDriver,
       icon: "driver",
       role: [ROLES.admin],
     },
     {
-      label: "CUSTOMER",
+      label: "KHÁCH HÀNG",
       to: ROUTES.adminCustomer,
       icon: "user",
       role: [ROLES.admin],

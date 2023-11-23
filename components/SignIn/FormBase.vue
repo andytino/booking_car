@@ -100,7 +100,7 @@ const hdNavigateToForgotPassword = () => {
           @click="hdSignInWithGoogle"
         >
           <template #default>
-            <span class="text-black dark:text-white">Đăng nhập với Googles</span>
+            <span class="text-black dark:text-white">Đăng nhập với Google</span>
           </template>
           <template #leading>
             <SvgIcon icon="google-logo" width="24" height="24" />
