@@ -64,11 +64,11 @@ export default defineNuxtConfig({
         },
       ],
     },
-    workbox: {
-      globPatterns: ["**/*.{js,css}"],
-      navigateFallback: null,
-      cleanupOutdatedCaches: true,
-    },
+    // workbox: {
+    //   globPatterns: ["**/*.{js,css}"],
+    //   navigateFallback: null,
+    //   cleanupOutdatedCaches: true,
+    // },
     // devOptions: {
     //   enabled: true,
     //   type: "module",
