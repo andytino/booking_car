@@ -4,7 +4,7 @@
     <Body>
       <div class="h-screen flex flex-col">
         <NavHome></NavHome>
-        <div class="flex-auto px-5 py-10">
+        <div class="flex-auto py-10">
           <slot />
         </div>
       </div>

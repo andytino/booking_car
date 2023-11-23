@@ -17,6 +17,14 @@ export default defineAppConfig({
         black: {
           solid: "text-white bg-black dark:bg-gray-900",
         },
+        green: {
+          solid:
+            "shadow-sm ring-inset ring-secondary dark:ring-gray-700 text-white dark:text-white bg-secondary hover:bg-secondary disabled:bg-secondary/80 dark:bg-secondary dark:hover:bg-secondary dark:disabled:bg-gray-900 focus-visible:ring-secondary dark:focus-visible:ring-secondary",
+          outline:
+            "shadow-sm ring-inset ring-secondary dark:ring-gray-700 text-gray-900 dark:text-white bg-white hover:bg-gray-50 disabled:bg-white dark:bg-gray-900 dark:hover:bg-gray-800/50 dark:disabled:bg-gray-900 focus-visible:ring-2 focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400",
+          ghost:
+            "text-gray-900 dark:text-white hover:bg-white dark:hover:bg-gray-900 focus-visible:ring-inset focus-visible:ring-2 focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400",
+        },
       },
     },
     input: {

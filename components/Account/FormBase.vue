@@ -178,7 +178,13 @@ const hdCancel = () => {
       </UFormGroup>
 
       <div class="flex justify-center gap-5 mt-10 ml-32">
-        <UButton class="bg-secondary w-32 flex justify-center" type="submit" :loading="isLoading">
+        <UButton
+          class="w-32 flex justify-center"
+          type="submit"
+          color="green"
+          variant="solid"
+          :loading="!isLoading"
+        >
           <template v-if="!isEdit">Tạo</template>
           <template v-else>Cập nhật</template>
         </UButton>

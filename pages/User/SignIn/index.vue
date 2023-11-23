@@ -58,6 +58,7 @@ const hdSignIn = async (formSignIn: IFormSignInState) => {
       :is-loading="isLoading"
       :is-sign-in-with-google="true"
       :route-forgot-password="ROUTES.userForgotPassword"
+      :route-sign-up="ROUTES.userSingUp"
       @sign-in="hdSignIn"
       @sign-in-with-google="hdSignInWithGoogle"
     />

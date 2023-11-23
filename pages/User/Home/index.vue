@@ -8,6 +8,6 @@ definePageMeta({
 
 <template>
   <div>
-    <h1>Dashboard</h1>
+    <h1>Trang chủ đặt xe</h1>
   </div>
 </template>

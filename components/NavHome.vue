@@ -24,13 +24,17 @@ const hdNavigateToSignUp = () => {
 </script>
 <template>
   <div class="w-full flex items-center py-4 px-5">
-    <div><p>Logo</p></div>
+    <!-- <div><p>Logo</p></div> -->
     <div class="flex-auto"></div>
     <div class="flex items-center">
       <UDropdown :items="items" :popper="{ placement: 'bottom-start' }">
-        <UButton color="white" label="Đăng nhập" />
+        <UButton class="text-white bg-transparent ring-transparent" label="Đăng nhập" />
       </UDropdown>
-      <UButton color="white" label="Đăng ký" @click="hdNavigateToSignUp" />
+      <UButton
+        class="text-white bg-transparent ring-transparent mr-4"
+        label="Đăng ký"
+        @click="hdNavigateToSignUp"
+      />
     </div>
   </div>
 </template>

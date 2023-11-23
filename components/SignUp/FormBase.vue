@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import type { FormError } from "#ui/types";
-import { ROUTES } from "~/constants/routes";
 import type { IFormSignUpState } from "./type";
+import { ROUTES } from "~/constants/routes";
 
 interface Props {
   isLoading?: boolean;
@@ -55,7 +55,9 @@ const hdNavigateToSignIn = () => {
         />
       </UFormGroup>
 
-      <UButton class="bg-secondary mt-10" type="submit" :loading="isLoading">Đăng ký</UButton>
+      <UButton class="mt-10" color="green" variant="solid" type="submit" :loading="props.isLoading"
+        >Đăng ký</UButton
+      >
 
       <p class="text-xs mt-4">
         Tôi đã là thành viên!

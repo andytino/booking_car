@@ -108,7 +108,9 @@ const hdNavigateToForgotPassword = () => {
         </UButton>
       </template>
 
-      <UButton class="bg-secondary mt-10" type="submit" :loading="isLoading">Đăng nhập</UButton>
+      <UButton class="mt-10" color="green" variant="solid" type="submit" :loading="isLoading"
+        >Đăng nhập</UButton
+      >
     </UForm>
   </div>
 </template>

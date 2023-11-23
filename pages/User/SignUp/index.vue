@@ -25,6 +25,8 @@ const handleSignUp = async (formSignUpState: IFormSignUpState) => {
       },
     });
 
+    console.log("error", error);
+
     if (error) throw error;
 
     navigateTo(ROUTES.userSignIn);
@@ -39,7 +41,7 @@ const handleSignUp = async (formSignUpState: IFormSignUpState) => {
   <div class="flex flex-col items-center">
     <img src="../../../assets/images/user-logo.png" alt="" width="58" height="50" />
     <h1 class="font-bold text-2xl mt-5">Đăng ký</h1>
-    <SignUpFormBase class="mt-10" @sign-up="handleSignUp" :is-loading="isLoading" />
+    <SignUpFormBase class="mt-10" :is-loading="isLoading" @sign-up="handleSignUp" />
     <span class="underline text-xs cursor-pointer mt-4" @click="navigateTo(ROUTES.userHome)"
       >Quay lại Trang chủ</span
     >
