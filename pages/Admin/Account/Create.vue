@@ -2,7 +2,6 @@
 import { STATUS, type IFormAccountState } from "~/components/Account/type";
 import { ROUTES } from "~/constants/routes";
 import { ROLES } from "~/types/roles";
-import type { Database } from "~/types/supabase";
 
 definePageMeta({
   layout: "auth-admin",
@@ -25,7 +24,7 @@ const newUser: IFormAccountState = {
 const hdCreateAccount = async (formAccountState: IFormAccountState) => {
   try {
     isLoading.value = true;
-    const { error } = await useFetch("/api/users", {
+    const { error } = await useFetch("/api/user", {
       method: "POST",
       body: {
         email: formAccountState.email,

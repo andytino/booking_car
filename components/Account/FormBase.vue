@@ -1,7 +1,7 @@
 <script lang="ts" setup>
-import { ROLES } from "~/types/roles";
 import type { FormError } from "#ui/types";
 import { STATUS, type IFormAccountState } from "./type";
+import { ROLES } from "~/types/roles";
 import { ROUTES } from "~/constants/routes";
 
 const roleOptions = [
@@ -176,9 +176,10 @@ const hdCancel = () => {
       </UFormGroup>
 
       <div class="flex justify-center gap-5 mt-10 ml-32">
-        <UButton class="bg-secondary w-20 flex justify-center" type="submit" :loading="isLoading"
-          >Tạo</UButton
-        >
+        <UButton class="bg-secondary w-20 flex justify-center" type="submit" :loading="isLoading">
+          <template v-if="!isEdit">Tạo</template>
+          <template v-else>Cập nhật</template>
+        </UButton>
         <UButton class="bg-gray-50 text-black w-20 flex justify-center" @click="hdCancel"
           >Huỷ</UButton
         >

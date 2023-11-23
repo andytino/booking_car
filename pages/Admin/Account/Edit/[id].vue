@@ -2,7 +2,6 @@
 import { STATUS, type IFormAccountState } from "~/components/Account/type";
 import { ROUTES } from "~/constants/routes";
 import { ROLES } from "~/types/roles";
-import type { Database } from "~/types/supabase";
 
 definePageMeta({
   layout: "auth-admin",
@@ -31,7 +30,7 @@ const hdEditAccount = async (formAccountState: IFormAccountState) => {
   try {
     isLoading.value = true;
     const { error } = await useFetch(`/api/user/${idAccount}`, {
-      method: "PUT",
+      method: "PATCH",
       body: {
         role_id: formAccountState.role,
         is_active: formAccountState.isActive,

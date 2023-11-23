@@ -5,11 +5,11 @@ import { ROUTES } from "~/constants/routes";
 const supabase = useSupabaseClient();
 const user = useSupabaseUser();
 
-const isMinimize = ref<boolean>(true);
+// const isMinimize = ref<boolean>(true);
 
-const hdShowSidebar = () => {
-  isMinimize.value = !isMinimize.value;
-};
+// const hdShowSidebar = () => {
+//   isMinimize.value = !isMinimize.value;
+// };
 
 const SIDEBAR = computed(() => {
   return ADMIN_NAVIGATION().filter((i) => i.role.includes(user.value?.user_metadata.role_id || 0));
@@ -39,6 +39,6 @@ const hdSignOut = async () => {
         </p>
       </template>
     </UVerticalNavigation>
-    <UButton class="w-fit bg-blue-50 mb-10" @click="hdSignOut" label="Sign out"> </UButton>
+    <UButton class="w-fit bg-blue-50 mb-10" label="Sign out" @click="hdSignOut"> </UButton>
   </div>
 </template>

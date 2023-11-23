@@ -41,11 +41,8 @@ const items = (row: IProfiles) => [
       icon: "trash",
       click: async () => {
         try {
-          const { error } = await useFetch("/api/users", {
+          const { error } = await useFetch(`/api/user/${row.id}`, {
             method: "PUT",
-            body: {
-              id: row.id,
-            },
           });
           if (error.value) throw error;
 
