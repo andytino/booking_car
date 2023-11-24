@@ -158,7 +158,6 @@ const hdCancel = () => {
             :key="role.value"
             v-model="formAccountState.role"
             v-bind="role"
-            :disabled="formAccountState.role === ROLES.admin"
           ></URadio>
         </div>
       </UFormGroup>
