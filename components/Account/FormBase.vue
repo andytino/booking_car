@@ -183,7 +183,7 @@ const hdCancel = () => {
           type="submit"
           color="green"
           variant="solid"
-          :loading="!isLoading"
+          :loading="isLoading"
         >
           <template v-if="!isEdit">Tạo</template>
           <template v-else>Cập nhật</template>

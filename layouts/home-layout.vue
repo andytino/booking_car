@@ -1,4 +1,9 @@
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+useServerSeoMeta({
+  title: "Booking car",
+  description: "Đồ án môn Nhập môn lập trình",
+});
+</script>
 <template>
   <Html>
     <Body>

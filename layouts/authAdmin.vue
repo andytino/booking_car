@@ -2,9 +2,10 @@
 const isLoading = ref(true);
 const nuxtApp = useNuxtApp();
 
-// nuxtApp.hook("page:start", () => {
-//   isLoading.value = true;
-// });
+useServerSeoMeta({
+  title: "Booking car",
+  description: "Đồ án môn Nhập môn lập trình",
+});
 
 nuxtApp.hook("page:finish", () => {
   isLoading.value = false;
