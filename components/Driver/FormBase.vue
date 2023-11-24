@@ -33,12 +33,11 @@ const formDriverState = reactive<IFormDriverState>(props.driver);
 watch(
   () => props.driver,
   () => {
-    const { email, fullName, phoneNumber, isActive, role, citizenId } = props.driver;
+    const { email, fullName, phoneNumber, isActive, citizenId } = props.driver;
     formDriverState.email = email;
     formDriverState.fullName = fullName;
     formDriverState.phoneNumber = phoneNumber;
     formDriverState.isActive = isActive;
-    formDriverState.role = role;
     formDriverState.citizenId = citizenId;
   },
 );

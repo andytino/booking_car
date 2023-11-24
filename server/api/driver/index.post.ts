@@ -16,11 +16,10 @@ export default eventHandler(async (event) => {
         full_name: body.full_name,
         citizen_id: body.citizen_id,
         is_online: body.is_online,
+        phone_number: body.phone_number,
       },
     },
   });
-
-  console.log("err", error);
 
   return { data, error };
 });

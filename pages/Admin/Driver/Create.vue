@@ -12,7 +12,7 @@ definePageMeta({
 const toast = useToast();
 const isLoading = ref<boolean>(false);
 
-const newUser: IFormDriverState = {
+const newDriver: IFormDriverState = {
   email: "",
   password: "",
   fullName: "",
@@ -53,7 +53,7 @@ const hdCreateDriver = async (formAccountState: IFormDriverState) => {
       class="mt-5"
       :url-back="ROUTES.adminDriver"
       :is-loading="isLoading"
-      :user="newUser"
+      :driver="newDriver"
       @submit="hdCreateDriver"
     ></DriverFormBase>
   </div>

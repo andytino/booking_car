@@ -14,6 +14,7 @@ export default eventHandler(async (event) => {
         role_id: body.role_id,
         is_active: body.is_active,
         full_name: body.full_name,
+        phone_number: body.phone_number,
       },
     },
   });
