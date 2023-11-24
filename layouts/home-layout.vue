@@ -7,7 +7,7 @@ useServerSeoMeta({
 <template>
   <Html>
     <Body>
-      <div class="h-screen flex flex-col">
+      <div class="booking h-screen flex flex-col">
         <NavHome></NavHome>
         <div class="flex-auto py-10">
           <slot />
@@ -16,3 +16,9 @@ useServerSeoMeta({
     </Body>
   </Html>
 </template>
+
+<style lang="scss">
+.booking {
+  padding-top: calc(env(safe-area-inset-top) - 18px);
+}
+</style>
